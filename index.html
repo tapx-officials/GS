@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover"
+  >
+
+  <meta name="theme-color" content="#050505">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+
+  <title>GULSHIP</title>
+
+  <link rel="manifest" href="manifest.json">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap"
+    rel="stylesheet"
+  >
+
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+  >
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div id="app">
+
+  <!-- HEADER -->
+  <header class="app-header" id="appHeader">
+
+    <button
+      class="icon-btn"
+      data-screen="homeScreen"
+      aria-label="Home"
+    >
+      <img src="logo.png" class="header-logo" alt="GULSHIP">
+    </button>
+
+    <div class="brand-title">GULSHIP</div>
+
+    <div class="header-actions">
+
+      <button
+        class="icon-btn"
+        id="searchButton"
+        aria-label="Search"
+      >
+        <i class="fa-solid fa-magnifying-glass"></i>
+      </button>
+
+      <button
+        class="icon-btn cart-header-btn"
+        data-open-cart
+        aria-label="Cart"
+      >
+        <i class="fa-solid fa-bag-shopping"></i>
+        <span id="headerCartBadge" class="cart-badge">0</span>
+      </button>
+
+    </div>
+
+  </header>
+
+
+  <!-- HOME -->
+  <main id="homeScreen" class="screen active">
+
+    <section class="hero-section">
+
+      <div class="hero-card">
+
+        <div class="hero-content">
+
+          <span class="eyebrow">
+            PREMIUM COLLECTION
+          </span>
+
+          <h1>
+            Designed to
+            <span>Stand Out.</span>
+          </h1>
+
+          <p>
+            Premium tech essentials built for
+            modern everyday life.
+          </p>
+
+          <button
+            class="gold-btn"
+            id="shopNowButton"
+          >
+            Shop Collection
+            <i class="fa-solid fa-arrow-right"></i>
+          </button>
+
+        </div>
+
+        <!-- FULL ROUND SQUARE IMAGE CARD -->
+        <div class="hero-image-box">
+          <div class="hero-image-inner">
+            <img
+              src="hero.png"
+              alt="GULSHIP Collection"
+            >
+          </div>
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- CATEGORIES -->
+    <section class="section-block">
+
+      <div class="section-heading">
+        <div>
+          <span class="section-kicker">EXPLORE</span>
+          <h2>Categories</h2>
+        </div>
+      </div>
+
+      <div
+        class="category-scroll"
+        id="categoryChips"
+      >
+
+        <button
+          class="category-chip active"
+          data-category="All"
+        >
+          All
+        </button>
+
+        <button
+          class="category-chip"
+          data-category="Glasses"
+        >
+          Glasses
+        </button>
+
+        <button
+          class="category-chip"
+          data-category="Earbuds"
+        >
+          Earbuds
+        </button>
+
+      </div>
+
+    </section>
+
+
+    <!-- PRODUCTS -->
+    <section class="section-block products-section">
+
+      <div class="section-heading">
+
+        <div>
+          <span class="section-kicker">SHOP</span>
+          <h2>Featured</h2>
+        </div>
+
+      </div>
+
+      <div
+        class="products-grid"
+        id="productsGrid"
+      ></div>
+
+    </section>
+
+  </main>
+
+
+  <!-- SEARCH -->
+  <section
+    id="searchScreen"
+    class="screen full-screen-page"
+  >
+
+    <div class="search-topbar">
+
+      <button
+        class="back-btn"
+        data-back
+        aria-label="Back"
+      >
+        <i class="fa-solid fa-arrow-left"></i>
+      </button>
+
+      <div class="search-input-wrap">
+
+        <i class="fa-solid fa-magnifying-glass"></i>
+
+        <input
+          id="searchInput"
+          type="search"
+          placeholder="Search products..."
+          autocomplete="off"
+        >
+
+        <button
+          id="clearSearch"
+          class="search-clear"
+        >
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+
+      </div>
+
+    </div>
+
+    <div class="search-tools">
+
+      <button
+        id="sortPriceButton"
+        class="filter-btn"
+      >
+        <i class="fa-solid fa-arrow-down-wide-short"></i>
+        Sort by Price
+      </button>
+
+      <button
+        id="searchFilterButton"
+        class="filter-btn"
+      >
+        <i class="fa-solid fa-sliders"></i>
+        Filters
+      </button>
+
+    </div>
+
+    <div id="searchResults" class="search-results"></div>
+
+  </section>
+
+
+  <!-- CART -->
+  <section
+    id="cartScreen"
+    class="screen page-screen"
+  >
+
+    <div class="page-topbar">
+
+      <div>
+        <span class="section-kicker">YOUR BAG</span>
+        <h1>Cart</h1>
+      </div>
+
+    </div>
+
+    <div id="cartContent"></div>
+
+  </section>
+
+
+  <!-- ORDERS -->
+  <section
+    id="ordersScreen"
+    class="screen page-screen"
+  >
+
+    <div class="page-topbar">
+
+      <div>
+        <span class="section-kicker">TRACK</span>
+        <h1>Orders</h1>
+      </div>
+
+    </div>
+
+    <div id="ordersContent"></div>
+
+  </section>
+
+
+  <!-- PRODUCT DETAILS -->
+  <section
+    id="productDetailsScreen"
+    class="screen product-details-screen"
+  >
+
+    <div class="details-topbar">
+
+      <button
+        class="back-btn"
+        data-back
+      >
+        <i class="fa-solid fa-arrow-left"></i>
+      </button>
+
+      <span>Product Details</span>
+
+      <button
+        class="icon-btn"
+        data-open-cart
+      >
+        <i class="fa-solid fa-bag-shopping"></i>
+        <span
+          id="detailsCartBadge"
+          class="cart-badge small"
+        >0</span>
+      </button>
+
+    </div>
+
+    <div id="productDetailsContent"></div>
+
+  </section>
+
+
+  <!-- CHECKOUT -->
+  <section
+    id="checkoutScreen"
+    class="screen page-screen"
+  >
+
+    <div class="page-topbar">
+
+      <button
+        class="back-btn"
+        data-back
+      >
+        <i class="fa-solid fa-arrow-left"></i>
+      </button>
+
+      <div>
+        <span class="section-kicker">CHECKOUT</span>
+        <h1>Customer Details</h1>
+      </div>
+
+    </div>
+
+    <form
+      id="checkoutForm"
+      class="checkout-form"
+    >
+
+      <div class="order-id-card">
+
+        <div>
+          <span>ORDER ID</span>
+          <strong id="checkoutOrderId">
+            Generating...
+          </strong>
+        </div>
+
+        <i class="fa-solid fa-receipt"></i>
+
+      </div>
+
+
+      <div class="form-group">
+
+        <label for="customerName">
+          Full Name
+        </label>
+
+        <input
+          id="customerName"
+          type="text"
+          placeholder="Enter your name"
+          required
+        >
+
+      </div>
+
+
+      <div class="form-group">
+
+        <label for="customerPhone">
+          Phone Number
+        </label>
+
+        <input
+          id="customerPhone"
+          type="tel"
+          inputmode="numeric"
+          maxlength="10"
+          placeholder="10 digit mobile number"
+          required
+        >
+
+      </div>
+
+
+      <div class="form-group">
+
+        <label for="customerAddress">
+          Address
+        </label>
+
+        <textarea
+          id="customerAddress"
+          rows="3"
+          placeholder="House no., street, area..."
+          required
+        ></textarea>
+
+      </div>
+
+
+      <div class="form-row">
+
+        <div class="form-group">
+
+          <label for="customerCity">
+            City
+          </label>
+
+          <input
+            id="customerCity"
+            type="text"
+            placeholder="City"
+            required
+          >
+
+        </div>
+
+
+        <div class="form-group">
+
+          <label for="customerPincode">
+            Pincode
+          </label>
+
+          <input
+            id="customerPincode"
+            type="tel"
+            inputmode="numeric"
+            maxlength="6"
+            placeholder="110000"
+            required
+          >
+
+        </div>
+
+      </div>
+
+
+      <div id="checkoutSummary"></div>
+
+
+      <button
+        type="submit"
+        class="gold-btn full-btn"
+      >
+        Continue to Payment
+        <i class="fa-solid fa-arrow-right"></i>
+      </button>
+
+    </form>
+
+  </section>
+
+
+  <!-- PAYMENT -->
+  <section
+    id="paymentScreen"
+    class="screen page-screen"
+  >
+
+    <div class="page-topbar">
+
+      <button
+        class="back-btn"
+        data-back
+      >
+        <i class="fa-solid fa-arrow-left"></i>
+      </button>
+
+      <div>
+        <span class="section-kicker">SECURE CHECKOUT</span>
+        <h1>Payment</h1>
+      </div>
+
+    </div>
+
+    <div id="paymentContent"></div>
+
+  </section>
+
+
+  <!-- ORDER DETAILS -->
+  <section
+    id="orderDetailsScreen"
+    class="screen page-screen"
+  >
+
+    <div class="page-topbar">
+
+      <button
+        class="back-btn"
+        data-back
+      >
+        <i class="fa-solid fa-arrow-left"></i>
+      </button>
+
+      <div>
+        <span class="section-kicker">ORDER</span>
+        <h1>Order Details</h1>
+      </div>
+
+    </div>
+
+    <div id="orderDetailsContent"></div>
+
+  </section>
+
+
+  <!-- BOTTOM NAV -->
+  <nav
+    class="bottom-nav"
+    id="bottomNav"
+  >
+
+    <button
+      class="nav-item active"
+      data-screen="homeScreen"
+      data-nav="home"
+    >
+      <i class="fa-solid fa-house"></i>
+      <span>HOME</span>
+    </button>
+
+    <button
+      class="nav-item"
+      data-screen="cartScreen"
+      data-nav="cart"
+    >
+      <span class="nav-icon-wrap">
+        <i class="fa-solid fa-bag-shopping"></i>
+        <span
+          id="cartBadge"
+          class="cart-badge nav-badge"
+        >0</span>
+      </span>
+      <span>CART</span>
+    </button>
+
+    <button
+      class="nav-item"
+      data-screen="ordersScreen"
+      data-nav="orders"
+    >
+      <i class="fa-solid fa-box"></i>
+      <span>ORDERS</span>
+    </button>
+
+  </nav>
+
+
+  <!-- TOAST -->
+  <div
+    id="toast"
+    class="toast"
+  ></div>
+
+
+  <!-- LOADER -->
+  <div
+    id="appLoader"
+    class="app-loader"
+  >
+
+    <div class="loader-mark">
+      G
+    </div>
+
+    <div class="loader-line">
+      <span></span>
+    </div>
+
+  </div>
+
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
